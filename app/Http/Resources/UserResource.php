@@ -19,7 +19,7 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->when(
-                $this->resource->is(auth()->user()),
+                $this->resource->is(auth()->user()), // TODO check permissions on this user before updating the email address and password for this user and update the email address and password accordingly if necessary otherwise it will fail silently and will return false
                 $this->email
             ),
             'isAdmin' => $this->isAdmin,
