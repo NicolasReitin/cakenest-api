@@ -37,7 +37,6 @@ class CupcakeResource extends JsonResource
             'cupcakes.update' => 'Update Successful',
             'cupcakes.show' => 'Show Successful',
             'cupcakes.destroy' => 'Delete Successful',
-
         ]);
 
         return $routeMessageMap->get($request->route()->getName(), null);

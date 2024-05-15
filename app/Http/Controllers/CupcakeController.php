@@ -39,15 +39,12 @@ class CupcakeController extends Controller
         $cupcake->save();
 
 
-        // // on renvoie une réponse JSON
+        // on renvoie une réponse JSON
         return CupcakeResource::make($cupcake)->response()->setStatusCode(201);
     }
    
     public function show(Cupcake $cupcake)
-    {
-        // Find le cupcake dans la BDD
-       // $cupcake = Cupcake::findOrFail($cupcake->id);
-
+   {
         // on affihce le cupcake via une réponse JSON
         return CupcakeResource::make($cupcake);
     }
@@ -64,9 +61,6 @@ class CupcakeController extends Controller
             'price' => 'required|numeric'
         ]);
 
-        // Find le cupcake dans la BDD
-        //$cupcake = Cupcake::findOrFail($cupcake->id);
-
         // Update du cupcake
         $cupcake->name = $vaidateData['title'];
         $cupcake->image = $vaidateData['imageSource'];
@@ -79,20 +73,16 @@ class CupcakeController extends Controller
         
         // on renvoie une réponse JSON
         return CupcakeResource::make($cupcake);
-
     }
 
    
     public function destroy(Cupcake $cupcake)
     {
-        // on find le cupcake avec l'id
-        $cupcake = Cupcake::findOrFail($cupcake->id);
-
         // on supprime le cupcake
         $cupcake->delete();
 
-        //on renvoie une reponse JSON
-        return CupcakeResource::make($cupcake)->response();
+        // on renvoie une reponse JSON
+        return CupcakeResource::make($cupcake);
 
     }
 }

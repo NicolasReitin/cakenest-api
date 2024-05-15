@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Cupcake;
+use App\Models\Order;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,14 +13,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cupcakes', function (Blueprint $table) {
+        Schema::create('cupcake_order', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('image');
-            $table->integer('quantity');
+            $table->foreignId(column: 'cupcakes_id')->constrained(table: 'cupcakes');
+            $table->foreignId(column: 'orders_id')->constrained(table: 'orders');
             $table->decimal('price', 8, 4);
-            $table->boolean('is_available')->default(false);
-            $table->boolean('is_advertised')->default(false);
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cupcakes');
+        //
     }
 };

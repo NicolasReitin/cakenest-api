@@ -10,8 +10,13 @@ class Order extends Model
 {
     use HasFactory;
 
-    public function user()
+    public function users()
     {
         return $this->BelongsTo(User::class);
+    }
+
+    public function cupcakes()
+    {
+        return $this->belongsToMany(Cupcake::class, 'cupcakes');
     }
 }
