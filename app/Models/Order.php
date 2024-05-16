@@ -17,6 +17,7 @@ class Order extends Model
 
     public function cupcakes()
     {
-        return $this->belongsToMany(Cupcake::class, 'cupcakes');
+        return $this->belongsToMany(Cupcake::class, 'cupcake_orders', 'orders_id', 'cupcakes_id')
+            ->withPivot('price', 'quantity');;
     }
 }

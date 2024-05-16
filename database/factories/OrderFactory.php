@@ -25,15 +25,4 @@ class OrderFactory extends Factory
         ];
     }
 
-    public function configure()
-{
-    return $this->afterCreating(function (Order $order) {
-        $cupcakes = Cupcake::inRandomOrder()->limit(rand(1, 5))->get();
-        foreach ($cupcakes as $cupcake) {
-            $quantity = rand(1, 5);
-            $totalPrice = $cupcake->price * $quantity; // Calcul du prix total
-            $order->cupcakes()->attach($cupcake, ['quantity' => $quantity, 'total_price' => $totalPrice]);
-        }
-    });
-}
 }

@@ -14,11 +14,19 @@ class OrderResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        // return parent::toArray($request);
         return [
             'id' => $this->id,
             'user' => UserResource::make($this->whenLoaded('user')),
+            'cupcakes' => CupcakeResource::collection($this->cupcakes), // Chargement des ressources pour chaque cupcake
+            'totalPrice' => $this->calculateTotalPrice(), // Calcul du prix total de la commande
             'created_at' => $this->created_at,
         ];
+    }
+
+    private function calculateTotalPrice()
+    {
+        return $this->cupcakes->sum(function ($cupcake) {
+            return round($cupcake->pivot->price * $cupcake->pivot->quantity, 2);
+        });
     }
 }

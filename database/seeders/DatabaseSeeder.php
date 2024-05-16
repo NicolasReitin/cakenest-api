@@ -2,11 +2,13 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Seeder;
+use Database\Factories\CupcakeOrderFactory;
+
 use App\Models\Cupcake;
 use App\Models\Order;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +17,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // CupcakeOrderFactory::new()->count(10)->create();
+
         // User::factory(4)->create();
 
         // User::factory()->create([
@@ -23,12 +27,9 @@ class DatabaseSeeder extends Seeder
         //     'isAdmin' => true
         // ]);
 
-        Order::factory(2)->create([
-            "user_id" => 1
-        ]);
-
-        // Cupcake::factory()->create();
-        
+        // Order::factory(2)->create([
+        //     "user_id" => 2
+        // ]);
 
             //création de 10 cupcake
         // Cupcake::factory()

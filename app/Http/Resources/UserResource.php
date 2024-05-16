@@ -15,15 +15,17 @@ class UserResource extends JsonResource
     public function toArray(Request $request): array
     {
         auth()->loginUsingId($this->id); //permet de se connecter automatiquement au user id  pris dans la requete pour simuler qu'on est le user connecté.
+
         return [
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->when(
-                $this->resource->is(auth()->user()), // TODO check permissions on this user before updating the email address and password for this user and update the email address and password accordingly if necessary otherwise it will fail silently and will return false
+                $this->resource->is(auth()->user()), 
                 $this->email
             ),
             'isAdmin' => $this->isAdmin,
-            'orders' => OrderResource::collection($this->orders), $this->whenLoaded('orders'),
+            'orders' => OrderResource::collection($this->orders),
+            // OrderResource::collection($this->orders), $this->whenLoaded('orders'),
             'registeredAt' => $this->created_at,
         ];
     }
