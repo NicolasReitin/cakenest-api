@@ -19,7 +19,8 @@ Route::get('users', function() {
 });
 
 //---------------------------- Cupcake --------------------------------
-Route::get('/cupcakes', [CupcakeController::class, 'index'])->name('cupcakes.index')->middleware(IsAdmin::class);
+Route::get('/cupcakes', [CupcakeController::class, 'index'])->name('cupcakes.index');
+// Route::get('/cupcakes', [CupcakeController::class, 'index'])->name('cupcakes.index')->middleware(IsAdmin::class);
 Route::post('/cupcakes', [CupcakeController::class, 'store'])->name('cupcakes.store');
 Route::get('/cupcakes/{cupcake}', [CupcakeController::class, 'show'])->name('cupcakes.show');
 Route::put('/cupcakes/{cupcake}', [CupcakeController::class, 'update'])->name('cupcakes.update');
