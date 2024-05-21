@@ -17,7 +17,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // vérifie si un user est connecté et si celui est 
+        // vérifie si un user est connecté et si celui est admin
         
         /** 
          * @var User $user 
